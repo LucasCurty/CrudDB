@@ -2,10 +2,12 @@ require('dotenv').config();
 const express = require("express");
 const app = express();
 const mongoose = require('mongoose')
-const PORT = process.env.PORT_SERV;
+const path = require('path')
+
 const typeSchema = require('./models/ModelSchema')
 const router = require('./routes/router')
 
+const PORT = process.env.PORT_SERV;
 app.listen(PORT, ()=> console.log(`server running`));
 
 //Conecção com o banco de dados
@@ -34,8 +36,6 @@ const new_user = new NewUser({
     create: data()
 })
 
-
-app.use('/', router)
-
-module.exports = {new_user}
-// Hello
+app.set("view engine", "ejs");
+app.set("views", path.join(__dirname,"./client/"));
+app.use('/', router);

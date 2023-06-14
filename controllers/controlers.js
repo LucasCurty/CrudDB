@@ -1,7 +1,7 @@
 const mongoose = require('mongoose');
 const typeSchema = require('../models/ModelSchema')
 const NewUser = mongoose.model('users', typeSchema)
-const new_user = require('../index')
+
 
 const findAllUser = async (req,res) =>{
    await NewUser.find()
@@ -24,9 +24,10 @@ const deleteUser = (req,res) => {
         .then(res.send(`Apagado com sucesso!`)) 
         .catch(error => console.log(error.message))
 }
-const saveUser = () =>{
-   new_user.save()
-    .then(console.log('Confirmado'))
+const saveUser = (req,res) =>{
+    let use = new NewUser(req.body)
+   use.save()
+    .then(res.redirect('/list'))
     .catch(error => console.log(error))
 }
 

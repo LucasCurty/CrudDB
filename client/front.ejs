@@ -7,7 +7,15 @@
     <title>Lista do Banco de dados</title>
 </head>
 <body>
-    <h1>Hello World!</h1>
-    <p>FROM EJS!!!</p>
+    <main>
+        <h2>Cadastrando usuario</h2>
+        <form action="/save" method="post">
+            <input name="id"  hid value="55">
+            <input name="user" type="text" placeholder="Digite o seu nome" required>
+            <input name="age" type="number" placeholder="Digite o sua idade" required>
+            <input name="create" type="datetime-local" >
+            <button>Salvar</button>
+        </form>
+    </main>
 </body>
 </html>
