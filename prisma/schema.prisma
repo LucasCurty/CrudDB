@@ -14,20 +14,13 @@ model User{
   password String
   avatar String?
 
-  notas Nota[]
-
   created_at DateTime @default(now())
 
   @@map("users")
 }
 
 model Nota{
-  id          String @id @default(uuid())
-  user_id String
-  usur User @relation(fields: [user_id],references: [id])
-
-  
-  numero_nota String
+  numero_nota String @unique
   client String
   destinatario String
   endereco_destinatario String
@@ -35,7 +28,20 @@ model Nota{
   peso Float
   valor_nota Float
   tipo_produto String?
-  status_entrega String?
 
   @@map("notas")
+}
+
+model Frete{
+  id String @unique @default(uuid())
+  frete Int @id @default(autoincrement())
+  data_frete DateTime @default(now())
+  peso Float
+  frete_empresa Int
+  frete_saida_motorista Int
+  quantidade_entregas Int
+  motorista String
+  placa String
+
+  @@map("fretes")
 }
